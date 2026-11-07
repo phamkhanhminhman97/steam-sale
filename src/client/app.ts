@@ -45,19 +45,20 @@ function imageFor(d:Deal) {
   try { const url=new URL(d.image); return url.protocol==='https:' && ['shared.akamai.steamstatic.com','shared.fastly.steamstatic.com'].includes(url.hostname) ? url.href : null; } catch { return null; }
 }
 const heart='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
+const fallbackCover='<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4m-2-2v4m8-2h.01m3 0h.01"/></svg>';
 function row(d:Deal) {
   const el=node('article','game-row'); el.dataset.id=String(d.id);
   const main=node('button','game-main'); main.type='button'; main.dataset.open=String(d.id); main.setAttribute('aria-label',`Xem ${d.name}`);
   const cover=node('span','game-cover'); const url=imageFor(d);
-  if(url) {const img=node('img');img.src=url;img.alt='';img.width=231;img.height=87;img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{img.remove();cover.append(node('span','cover-fallback','↗'));},{once:true});cover.append(img);}
-  else cover.append(node('span','cover-fallback','↗'));
+  if(url) {const img=node('img');img.src=url;img.alt='';img.width=231;img.height=87;img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{img.remove();const fb=node('span','cover-fallback');fb.innerHTML=fallbackCover;cover.append(fb);},{once:true});cover.append(img);}
+  else {const fb=node('span','cover-fallback');fb.innerHTML=fallbackCover;cover.append(fb);}
   const info=node('span','game-info'); info.append(node('span','game-title',d.name));
   const meta=node('span','game-meta');
   if(d.rating!==null) meta.append(node('span','mobile-rating',`${d.rating}% tích cực`),node('span','mobile-rating','·'));
   if(d.players.includes(9)) meta.append(node('span','','Co-op'),node('span','','·'));
   meta.append(node('span','',remaining(d))); if(d.launch) meta.append(node('span','launch','Ra mắt'));
   info.append(meta); main.append(cover,info);
-  const rating=node('div','rating'); rating.append(node('strong','',d.rating===null?'—':`${d.rating}% tích cực`),node('small','',`${count(d.reviews)} đánh giá`));
+  const rating=node('div','rating'); rating.append(node('strong','',d.rating===null?'Chưa có':`${d.rating}% tích cực`),node('small','',`${count(d.reviews)} đánh giá`));
   const price=node('div','price'); price.append(node('del','',money(d.original)),node('strong','',money(d.price)));
   const save=node('button','save');save.type='button';save.dataset.save=String(d.id);save.innerHTML=heart;
   save.setAttribute('aria-pressed',String(saved.has(d.id))); save.setAttribute('aria-label',`${saved.has(d.id)?'Bỏ lưu':'Lưu'} ${d.name}`);
@@ -90,9 +91,9 @@ function mobileFilters(open:boolean) {
 function detail(d:Deal) {
   selectedId=d.id;const body=get('detail-content');body.replaceChildren();
   const url=imageFor(d);if(url){const img=node('img','detail-image');img.src=url;img.alt=d.name;body.append(img);}
-  const h=node('h2','',d.name);h.id='detail-title';body.append(h,node('p','detail-note',`${d.rating??'—'}% đánh giá tích cực · ${count(d.reviews)} đánh giá · ${remaining(d)}`));
+  const h=node('h2','',d.name);h.id='detail-title';body.append(h,node('p','detail-note',`${d.rating!==null?d.rating+'% tích cực':'Chưa có đánh giá'} · ${count(d.reviews)} đánh giá · ${remaining(d)}`));
   const price=node('div','detail-price');price.append(node('span','discount',`−${d.discount}%`),node('strong','',money(d.price)),node('del','',money(d.original)));body.append(price);
-  const actions=node('div','detail-actions'), app=node('a','btn','Mở trong Steam ↗'),web=node('a','btn secondary','Xem trên Steam ↗');
+  const actions=node('div','detail-actions'), app=node('a','btn','Mở qua ứng dụng Steam'),web=node('a','btn secondary','Mở trên trình duyệt');
   app.href=`steam://store/${d.id}`;web.href=`https://store.steampowered.com/app/${d.id}/?cc=vn`;web.target='_blank';web.rel='noopener';actions.append(app,web);body.append(actions);
   body.append(node('p','detail-note',`Giá ghi nhận lúc ${new Date(d.observedAt*1000).toLocaleString('vi-VN')}. Game, phiên bản và giá cuối cùng được xác nhận tại Steam.`));
   const section=node('section','history');section.append(node('h3','','Giá đã ghi nhận'));const text=node('p','','Đang tải lịch sử giá…');section.append(text);body.append(section);

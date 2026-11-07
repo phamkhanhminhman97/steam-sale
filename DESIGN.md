@@ -34,3 +34,24 @@
 - `nav-covers`: thông báo "đã lưu" nổi tạm 2 giây.
 
 Kiểm hành vi thay thế: `checks/browser-probe.js` (12 phép thử ở 1440, 1024, 768; 15 ở 390: tìm kiếm, ngân sách, lưu game, hộp chi tiết, bộ lọc điện thoại, ảnh tải).
+
+## Báo cáo Anti-Slop (Delivery Gate)
+
+Áp dụng bộ quy tắc [anti-slop](https://github.com/miqdadbadjuber/anti-slop) loại bỏ các khuôn mẫu AI sáo rỗng:
+
+- **Liveliness Dials**: ENERGY 2 / RHYTHM 2 / MOTION 2.
+- **Block 1: Hard Gate (100% PASS)**:
+  - R-02 PASS: Đã gỡ bỏ hoàn toàn ký tự em dash `—` trong toàn bộ giao diện, metadata và mã nguồn client; thay bằng dấu hai chấm, dấu phẩy hoặc câu văn tự nhiên.
+  - R-03 PASS: Responsive hoàn thiện ở mọi kích thước màn hình (1440, 1024, 768, 390px); tap targets đạt tối thiểu 44px; không tràn ngang.
+  - R-04 & R-08 PASS: Đã loại bỏ các ký tự mũi tên trang trí vô cớ (`↗`, `↘`, `↓`, `☷`); thay thế bằng icon SVG ngữ cảnh thực tế (kính lúp tìm kiếm, biểu tượng bộ lọc, tay cầm game).
+  - R-09 PASS: Đã loại bỏ badge capsule "bản đầu" (beta) và nhãn eyebrow lặp lại trên tiêu đề hero.
+  - R-17 & R-18 PASS: 100% số liệu giá và game lấy trực tiếp từ Steam Web API, không có số liệu ước lượng hay testimonial giả định.
+  - R-24 PASS: Toàn bộ điều hướng có đích đến thực tế (`/`, `Đã lưu`, `/gioi-thieu/`).
+  - R-25 PASS: Độ tương phản màu đạt chuẩn WCAG AA: chữ trắng 19.7:1, chữ phụ `--muted` 8.2:1, nhãn giữ chỗ 5.16:1 (đều vượt ngưỡng tối thiểu 4.5:1).
+  - R-26 PASS: Mọi nút, liên kết, lựa chọn đều có hành vi rõ ràng.
+  - R-27 PASS: Đầy đủ 4 trạng thái giao diện: Loading (spinner + text), Data (danh sách game), Empty (icon gamepad + gợi ý hành động), Error (thông báo + nút thử lại).
+  - R-32 PASS: Điều hướng bàn phím hoàn chỉnh: phím `/` lấy nét ô tìm kiếm, phím `Escape` đóng bộ lọc mobile và dialog, Tab trap trong drawer mobile.
+  - R-34 & R-37 PASS: Thiết kế bảng màu warm-black-gold có chủ ý cho thư viện game, có tài liệu hướng dẫn và lý do rõ ràng.
+  - R-35 PASS: Kiểm tra thực tế trên môi trường live https://steam-sale.phamkhanhminhman.com/.
+- **Block 2: Purpose-Gate (100% PASS)**: Không dùng gradient xanh tím AI mặc định, không glassmorphism tràn lan, không glow mù mịt, không buzzwords sáo rỗng.
+- **Block 3 & 4: Liveliness & Craftsmanship (100% PASS)**: Tiêu điểm thị giác tập trung vào ảnh game và mức giảm giá VNĐ; viền và bố cục nhất quán.

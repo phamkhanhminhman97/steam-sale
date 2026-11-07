@@ -11,36 +11,36 @@ import '../styles/site.css';
     <meta name="page-type" content="software" />
     <meta name="site-kind" content="software" />
     <meta name="description" content="Xem game Steam đang giảm giá tại Việt Nam. Lọc theo ngân sách, đánh giá và co-op; lưu game bạn muốn mua." />
-    <meta property="og:title" content="Steam sale — Game giảm giá tại Việt Nam" />
+    <meta property="og:title" content="Steam sale: Game giảm giá tại Việt Nam" />
     <meta property="og:description" content="Xem game Steam đang giảm giá tại Việt Nam. Lọc theo ngân sách, đánh giá và co-op; lưu game bạn muốn mua." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="vi_VN" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Steam sale — Game giảm giá tại Việt Nam" />
+    <meta name="twitter:title" content="Steam sale: Game giảm giá tại Việt Nam" />
     <meta name="twitter:description" content="Xem game Steam đang giảm giá tại Việt Nam. Lọc theo ngân sách, đánh giá và co-op; lưu game bạn muốn mua." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <title>Steam sale — Game giảm giá tại Việt Nam</title>
+    <title>Steam sale: Game giảm giá tại Việt Nam</title>
   </head>
   <body>
     <a class="skip" href="#catalog">Đến danh sách game</a>
     <header class="nav"><div class="wrap nav-inner">
-      <a class="brand" href="/" aria-label="Steam sale, trang chủ"><span class="brand-mark" aria-hidden="true">%</span>steam<span class="brand-light">sale</span><span class="beta">bản đầu</span></a>
+      <a class="brand" href="/" aria-label="Steam sale, trang chủ"><span class="brand-mark" aria-hidden="true">%</span>steam<span class="brand-light">sale</span></a>
       <nav aria-label="Điều hướng"><a href="/" class="nav-link" aria-current="page">Game giảm giá</a><button id="saved-nav" class="nav-link" type="button">Đã lưu <span id="saved-count">0</span></button></nav>
       <span class="region"><span aria-hidden="true">●</span> Việt Nam <b>VNĐ</b></span>
     </div></header>
     <main class="wrap">
       <section class="intro" aria-labelledby="title">
-        <div><p class="eyebrow">Giá Steam tại Việt Nam</p><h1 id="title">Game Steam<br /><span>đang giảm giá.</span></h1><p class="intro-copy">Tìm game hợp gu, trong ngân sách của bạn.</p><p id="mobile-updated" class="mobile-updated"></p></div>
-        <div class="intro-side"><span class="mini-label">Lần cập nhật gần nhất</span><strong id="updated">Đang tải dữ liệu</strong><p id="freshness">Giá có thể thay đổi. Kiểm tra lại trên Steam trước khi mua.</p><a href="#catalog" class="text-link">Xem danh sách <span aria-hidden="true">↘</span></a></div>
+        <div><h1 id="title">Game Steam<br /><span>đang giảm giá.</span></h1><p class="intro-copy">Tìm game hợp gu, trong ngân sách của bạn.</p><p id="mobile-updated" class="mobile-updated"></p></div>
+        <div class="intro-side"><span class="mini-label">Lần cập nhật gần nhất</span><strong id="updated">Đang tải dữ liệu</strong><p id="freshness">Giá có thể thay đổi. Kiểm tra lại trên Steam trước khi mua.</p><a href="#catalog" class="text-link">Xem danh sách game</a></div>
       </section>
       <div class="catalog-tabs"><div class="tab-group" aria-label="Chọn nhanh">
         <button type="button" class="tab active" data-preset="all">Tất cả game</button>
         <button type="button" class="tab" data-preset="budget">Dưới 100.000₫</button>
         <button type="button" class="tab" data-preset="coop">Chơi cùng bạn bè</button>
         <button type="button" class="tab" data-preset="deep">Giảm từ 75%</button>
-      </div><button type="button" id="mobile-filters" class="filter-toggle" aria-expanded="false" aria-controls="filters">Bộ lọc <span aria-hidden="true">☷</span></button></div>
+      </div><button type="button" id="mobile-filters" class="filter-toggle" aria-expanded="false" aria-controls="filters"><svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 5A1.5 1.5 0 0 1 4 3.5h12a1.5 1.5 0 0 1 1.5 1.5v1.2a1.5 1.5 0 0 1-.44 1.06L12 12.38V16a1 1 0 0 1-1.45.9l-2-1A1 1 0 0 1 8 15v-2.62L2.94 7.26A1.5 1.5 0 0 1 2.5 6.2V5Z" clip-rule="evenodd"/></svg>Bộ lọc</button></div>
       <div class="catalog-layout" id="catalog">
         <aside id="filters" aria-labelledby="filter-heading">
           <div class="filter-title"><h2 id="filter-heading">Bộ lọc</h2><button id="reset" type="button" class="text-button">Đặt lại</button><button id="close-filters" type="button" aria-label="Đóng bộ lọc">×</button></div>
@@ -57,18 +57,18 @@ import '../styles/site.css';
         </aside>
         <section class="results" aria-labelledby="results-heading">
           <div class="search-row"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="sr-only">Tìm tên game</span><input id="search" type="search" placeholder="Tìm tên game…" autocomplete="off" maxlength="150" /><kbd>/</kbd></label><label class="sort-control"><span class="sr-only">Sắp xếp game</span><select id="sort"><option value="popular">Nhiều đánh giá nhất</option><option value="price">Giá thấp nhất</option><option value="discount">Giảm sâu nhất</option><option value="rating">Đánh giá tốt nhất</option><option value="ending">Sắp hết giảm giá</option></select></label></div>
-          <div class="result-summary"><h2 id="results-heading"><span id="result-count">—</span> <span>game phù hợp</span></h2><span id="filter-caption">Trong ngân sách, theo đúng gu.</span></div>
+          <div class="result-summary"><h2 id="results-heading"><span id="result-count">0</span> <span>game phù hợp</span></h2><span id="filter-caption">Trong ngân sách, theo đúng gu.</span></div>
           <div id="notice" class="notice" hidden></div>
-          <div id="loading" class="loading">Đang tải giá Steam…</div>
+          <div id="loading" class="loading" aria-live="polite"><div class="loading-spinner" aria-hidden="true"></div><span>Đang tải giá Steam...</span></div>
           <div class="table-heading" aria-hidden="true"><span>Game</span><span>Đánh giá</span><span>Mức giảm</span><span>Giá hiện tại</span><span></span></div>
           <div id="games" class="games" aria-busy="true"></div>
-          <div id="empty" class="empty" hidden><span class="empty-mark" aria-hidden="true">↗</span><h3>Chưa có game phù hợp</h3><p>Thử tăng ngân sách hoặc bớt điều kiện lọc.</p><button id="empty-reset" class="btn secondary" type="button">Đặt lại bộ lọc</button></div>
-          <button id="more" class="load-more" type="button" hidden>Xem thêm game <span aria-hidden="true">↓</span></button>
+          <div id="empty" class="empty" hidden><span class="empty-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="20" height="14" x="2" y="5" rx="3"/><path d="M6 12h4m-2-2v4m8-2h.01m3 0h.01"/></svg></span><h3>Chưa có game phù hợp</h3><p>Thử tăng ngân sách hoặc bớt điều kiện lọc.</p><button id="empty-reset" class="btn secondary" type="button">Đặt lại bộ lọc</button></div>
+          <button id="more" class="load-more" type="button" hidden>Xem thêm game</button>
           <p id="shown" class="shown" aria-live="polite"></p>
         </section>
       </div>
     </main>
-    <footer class="wrap footer"><p><b>steam sale</b><span>Giá tốt cho lần chơi tiếp theo.</span></p><div><a href="https://store.steampowered.com/">Dữ liệu từ Steam ↗</a><a href="/gioi-thieu/">Về trang này</a></div><p class="legal">Trang độc lập, không liên kết với Valve. Giá được cung cấp nguyên trạng, có thể chậm hoặc sai.</p></footer>
+    <footer class="wrap footer"><p><b>steam sale</b><span>Giá tốt cho lần chơi tiếp theo.</span></p><div><a href="https://store.steampowered.com/">Cửa hàng Steam</a><a href="/gioi-thieu/">Về trang này</a></div><p class="legal">Trang độc lập, không liên kết với Valve. Giá được cung cấp nguyên trạng, có thể chậm hoặc sai.</p></footer>
     <dialog id="detail" aria-labelledby="detail-title"><button id="close-detail" class="dialog-close" type="button" aria-label="Đóng chi tiết game">×</button><div id="detail-content"></div></dialog>
     <div id="toast" class="toast" aria-hidden="true" hidden></div><div id="live" class="sr-only" role="status" aria-live="polite"></div>
     <noscript><div class="wrap notice">Bật JavaScript để tìm kiếm, lọc và lưu game. <a href="https://store.steampowered.com/search/?specials=1&cc=vn">Xem các game giảm giá trên Steam</a>.</div></noscript>
