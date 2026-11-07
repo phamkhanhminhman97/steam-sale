@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS prices_current (
+  app_id INTEGER PRIMARY KEY,
+  price INTEGER NOT NULL, original INTEGER NOT NULL, discount INTEGER NOT NULL,
+  on_sale INTEGER NOT NULL, low INTEGER NOT NULL, first_at INTEGER NOT NULL,
+  changed_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS price_history (
+  app_id INTEGER NOT NULL, run_id TEXT NOT NULL, at INTEGER NOT NULL,
+  price INTEGER NOT NULL, original INTEGER NOT NULL, discount INTEGER NOT NULL,
+  PRIMARY KEY(app_id, run_id)
+) WITHOUT ROWID;
+CREATE INDEX IF NOT EXISTS history_app_time ON price_history(app_id, at);
+CREATE TABLE IF NOT EXISTS sync_runs (
+  id TEXT PRIMARY KEY, started_at INTEGER NOT NULL, finished_at INTEGER,
+  status TEXT NOT NULL, total INTEGER, fetched INTEGER, written INTEGER DEFAULT 0
+);
+CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT NOT NULL);

@@ -1,0 +1,18 @@
+{
+  "name": "Steam sale — Game giảm giá tại Việt Nam",
+  "short_name": "Steam sale",
+  "description": "Xem game Steam đang giảm giá tại Việt Nam. Lọc theo ngân sách, đánh giá và co-op.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0a08",
+  "theme_color": "#0c0a08",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
